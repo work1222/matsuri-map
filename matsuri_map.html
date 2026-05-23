@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>市民まつりデジタルマップ</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f0e8;
+      font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      background: #2d6a4f;
+      color: white;
+      text-align: center;
+      padding: 12px 16px;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 11px;
+      font-weight: normal;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .map-container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .map-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== エリアボタン共通スタイル ===== */
+    .area-btn {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.85);
+      border: 3px solid #2d6a4f;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #2d6a4f;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      white-space: nowrap;
+    }
+
+    .area-btn:hover {
+      background: #2d6a4f;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    }
+
+    .area-btn::after {
+      content: '→';
+      font-size: 12px;
+    }
+
+    /* ===== 各エリアの位置（画像サイズに対する%指定） ===== */
+
+    /* 北側エリア：左上 */
+    .btn-north {
+      top: 42%;
+      left: 5%;
+    }
+
+    /* 南側エリア：右下 */
+    .btn-south {
+      top: 72%;
+      left: 60%;
+    }
+
+    /* 東側エリア：右上 */
+    .btn-east {
+      top: 25%;
+      left: 65%;
+    }
+
+    /* 西側エリア：左下 */
+    .btn-west {
+      top: 70%;
+      left: 5%;
+    }
+
+    /* ===== 凡例 ===== */
+    .legend {
+      width: 100%;
+      max-width: 900px;
+      background: white;
+      padding: 12px 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-top: 2px solid #2d6a4f;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2d6a4f;
+    }
+
+    /* ===== スマホ対応 ===== */
+    @media (max-width: 600px) {
+      header {
+        font-size: 15px;
+        padding: 10px 12px;
+      }
+
+      .area-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+        border-width: 2px;
+        border-radius: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    🎉 市民まつりデジタルマップ
+    <div class="subtitle">エリアをタップすると詳細マップに移動します</div>
+  </header>
+
+  <div class="map-container">
+
+    <!-- ★ イラストマップ画像 → 本番では差し替えてください -->
+    <img src="総合運動公園(全域).png" alt="会場全域マップ">
+
+    <!-- ★ 各エリアボタン → hrefのURLをArcGISの各エリアページURLに差し替えてください -->
+
+    <a class="area-btn btn-north" href="https://www.mcdonalds.co.jp/" target="_blank">
+      北側エリア
+    </a>
+
+    <a class="area-btn btn-south" href="https://www.mos.jp/" target="_blank">
+      南側エリア
+    </a>
+
+    <a class="area-btn btn-east" href="https://www.kfc.co.jp/menu" target="_blank">
+      東側エリア
+    </a>
+
+    <a class="area-btn btn-west" href="https://www.burgerking.co.jp/home" target="_blank">
+      西側エリア
+    </a>
+
+  </div>
+
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-dot"></div>
+      各エリアをタップして詳細マップへ
+    </div>
+  </div>
+
+</body>
+</html>
